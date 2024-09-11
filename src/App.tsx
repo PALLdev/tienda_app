@@ -1,9 +1,12 @@
-import {Text, View} from 'react-native';
+import './gesture-handler';
+
+import {NavigationContainer} from '@react-navigation/native';
+import {StackNavigator} from './presentation/navigation/StackNavigator';
 
 export const App = () => {
   return (
-    <View>
-      <Text>first commit</Text>
-    </View>
+    <NavigationContainer>
+      <StackNavigator />
+    </NavigationContainer>
   );
 };
