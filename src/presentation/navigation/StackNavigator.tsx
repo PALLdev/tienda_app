@@ -1,4 +1,7 @@
-import {createStackNavigator} from '@react-navigation/stack';
+import {
+  createStackNavigator,
+  type StackCardStyleInterpolator,
+} from '@react-navigation/stack';
 import {HomeScreen} from '../screens/home/HomeScreen';
 import {LoginScreen} from '../screens/auth/LoginScreen';
 import {RegisterScreen} from '../screens/auth/RegisterScreen';
@@ -15,6 +18,14 @@ export type RootStackParams = {
 
 const Stack = createStackNavigator<RootStackParams>();
 
+const fadeAnimation: StackCardStyleInterpolator = ({current}) => {
+  return {
+    cardStyle: {
+      opacity: current.progress,
+    },
+  };
+};
+
 export const StackNavigator = () => {
   return (
     <Stack.Navigator
@@ -22,10 +33,26 @@ export const StackNavigator = () => {
       screenOptions={{
         headerShown: false,
       }}>
-      <Stack.Screen name="Home" component={HomeScreen} />
-      <Stack.Screen name="Login" component={LoginScreen} />
-      <Stack.Screen name="Register" component={RegisterScreen} />
-      <Stack.Screen name="Loading" component={LoadingScreen} />
+      <Stack.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{cardStyleInterpolator: fadeAnimation}}
+      />
+      <Stack.Screen
+        name="Login"
+        component={LoginScreen}
+        options={{cardStyleInterpolator: fadeAnimation}}
+      />
+      <Stack.Screen
+        name="Register"
+        component={RegisterScreen}
+        options={{cardStyleInterpolator: fadeAnimation}}
+      />
+      <Stack.Screen
+        name="Loading"
+        component={LoadingScreen}
+        options={{cardStyleInterpolator: fadeAnimation}}
+      />
       <Stack.Screen name="Product" component={ProductScreen} />
     </Stack.Navigator>
   );
